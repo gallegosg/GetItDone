@@ -20,12 +20,6 @@ class ItemsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     func loadItems() {
@@ -87,6 +81,7 @@ class ItemsViewController: UITableViewController {
         
         if let item = items?[indexPath.row] {
             content.text = item.name
+            cell.accessoryType = item.isDone ? .checkmark : .none
         } else {
             content.text = "No items in this category. Try to add some."
         }

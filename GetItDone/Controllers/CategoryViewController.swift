@@ -142,9 +142,7 @@ class CategoryViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let category = categories?[indexPath.row] {
-            performSegue(withIdentifier: "goToItems", sender: self)
-        }
+        performSegue(withIdentifier: "goToItems", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

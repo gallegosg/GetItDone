@@ -71,8 +71,8 @@ class CategoryViewController: UITableViewController {
     
     func edit(_ category: Category) {
         var textField = UITextField()
-        var alertController = UIAlertController(title: "Edit \(category.name) Category", message: "Change it up", preferredStyle: .alert)
-        var alertAction = UIAlertAction(title: "Save", style: .default) { action in
+        let alertController = UIAlertController(title: "Edit \(category.name) Category", message: "Change it up", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "Save", style: .default) { action in
             do {
                 try self.realm.write {
                     category.name = textField.text!
@@ -83,7 +83,7 @@ class CategoryViewController: UITableViewController {
             }
         }
         
-        var dismissAction = UIAlertAction(title: "Dismiss", style: .cancel) { action in
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel) { action in
             self.dismiss(animated: true)
         }
         

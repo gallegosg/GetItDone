@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -94,10 +95,82 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="7NO-RZ-Y5I" kind="presentation" identifier="goToNewItem" id="ieh-Wn-S2Z"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CqT-ht-SzG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1903" y="-27"/>
+        </scene>
+        <!--New Item View Controller-->
+        <scene sceneID="NFm-9g-ORu">
+            <objects>
+                <viewController id="7NO-RZ-Y5I" customClass="NewItemViewController" customModule="GetItDone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kQ5-Eh-3g8">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ra0-As-uiz">
+                                <rect key="frame" x="16" y="10" width="221" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="55"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of the task" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sqs-rG-vUd">
+                                <rect key="frame" x="238.66666666666663" y="120" width="138.33333333333337" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHt-Hg-NUS">
+                                <rect key="frame" x="16" y="118" width="77" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ul4-AM-zRK">
+                                <rect key="frame" x="89" y="184" width="288" height="36"/>
+                                <connections>
+                                    <action selector="datePickerUpdated:" destination="7NO-RZ-Y5I" eventType="valueChanged" id="MaM-n0-65B"/>
+                                </connections>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVz-OS-2Yl">
+                                <rect key="frame" x="155" y="754" width="83" height="38"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Create">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="createButtonPressed:" destination="7NO-RZ-Y5I" eventType="touchUpInside" id="XJI-12-be0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="a99-Gi-uK9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ul4-AM-zRK" firstAttribute="top" secondItem="Sqs-rG-vUd" secondAttribute="bottom" constant="30" id="0Qs-4y-o6l"/>
+                            <constraint firstItem="yHt-Hg-NUS" firstAttribute="leading" secondItem="a99-Gi-uK9" secondAttribute="leading" constant="16" id="4b8-GS-3IW"/>
+                            <constraint firstItem="zVz-OS-2Yl" firstAttribute="centerX" secondItem="kQ5-Eh-3g8" secondAttribute="centerX" id="5rd-Th-Ndk"/>
+                            <constraint firstItem="a99-Gi-uK9" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ra0-As-uiz" secondAttribute="trailing" symbolic="YES" id="BQz-6O-Vvp"/>
+                            <constraint firstItem="a99-Gi-uK9" firstAttribute="trailing" secondItem="Sqs-rG-vUd" secondAttribute="trailing" constant="16" id="H1h-C4-pIK"/>
+                            <constraint firstItem="ra0-As-uiz" firstAttribute="leading" secondItem="a99-Gi-uK9" secondAttribute="leading" constant="16" id="KCO-PK-3Vl"/>
+                            <constraint firstItem="Sqs-rG-vUd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yHt-Hg-NUS" secondAttribute="trailing" constant="50" id="bll-hp-0tK"/>
+                            <constraint firstItem="a99-Gi-uK9" firstAttribute="trailing" secondItem="ul4-AM-zRK" secondAttribute="trailing" constant="16" id="fSm-T3-slZ"/>
+                            <constraint firstItem="ul4-AM-zRK" firstAttribute="leading" secondItem="a99-Gi-uK9" secondAttribute="leading" constant="89" id="g6T-aT-sag"/>
+                            <constraint firstItem="ra0-As-uiz" firstAttribute="top" secondItem="a99-Gi-uK9" secondAttribute="top" constant="10" id="juE-Ax-GRg"/>
+                            <constraint firstItem="a99-Gi-uK9" firstAttribute="bottom" secondItem="zVz-OS-2Yl" secondAttribute="bottom" constant="50" id="lZD-dO-gPy"/>
+                            <constraint firstItem="Sqs-rG-vUd" firstAttribute="top" secondItem="ra0-As-uiz" secondAttribute="bottom" constant="44" id="m34-Li-FCu"/>
+                            <constraint firstItem="yHt-Hg-NUS" firstAttribute="top" secondItem="ra0-As-uiz" secondAttribute="bottom" constant="42" id="oDs-mK-DTg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="datePicker" destination="ul4-AM-zRK" id="5mb-Hb-B2B"/>
+                        <outlet property="itemName" destination="Sqs-rG-vUd" id="mdg-AK-xA0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bgv-nc-QNw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2622.1374045801526" y="-27.464788732394368"/>
         </scene>
     </scenes>
     <resources>

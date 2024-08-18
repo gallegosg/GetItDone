@@ -17,11 +17,7 @@ class ItemsViewController: UITableViewController {
             loadItems()
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+
     func loadItems() {
         items = currentCategory?.items.sorted(byKeyPath: "name", ascending: true)
         title = currentCategory?.name
@@ -39,34 +35,35 @@ class ItemsViewController: UITableViewController {
     }
     
     @IBAction func addItemPressed(_ sender: UIBarButtonItem) {
-        var textField = UITextField()
-        let alertController = UIAlertController(title: "New Item", message: "Add the name of the item", preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "Add", style: .default) { action in
-            let newItem = Item()
-            newItem.name = textField.text!
-            newItem.createdDate = Date()
-            do {
-                try self.realm.write {
-                    self.currentCategory?.items.append(newItem)
-                }
-                self.tableView.reloadData()
-            } catch {
-                print(error)
-            }
-        }
+        performSegue(withIdentifier: "goToNewItem", sender: self)
+//        var textField = UITextField()
+//        let alertController = UIAlertController(title: "New Item", message: "Add the name of the item", preferredStyle: .alert)
+//        let alertAction = UIAlertAction(title: "Add", style: .default) { action in
+//            let newItem = Item()
+//            newItem.name = textField.text!
+//            newItem.createdDate = Date()
+//            do {
+//                try self.realm.write {
+//                    self.currentCategory?.items.append(newItem)
+//                }
+//                self.tableView.reloadData()
+//            } catch {
+//                print(error)
+//            }
+//        }
+//        
+//        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel) { action in
+//            self.dismiss(animated: true)
+//        }
+//        
+//        alertController.addTextField { alertTextField in
+//            alertTextField.placeholder = "Name"
+//            textField = alertTextField
+//        }
+//        alertController.addAction(alertAction)
+//        alertController.addAction(dismissAction)
         
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel) { action in
-            self.dismiss(animated: true)
-        }
-        
-        alertController.addTextField { alertTextField in
-            alertTextField.placeholder = "Name"
-            textField = alertTextField
-        }
-        alertController.addAction(alertAction)
-        alertController.addAction(dismissAction)
-        
-        present(alertController, animated: true)
+//        present(alertController, animated: true)
     }
     
     // MARK: - Table view data source
@@ -81,6 +78,7 @@ class ItemsViewController: UITableViewController {
         
         if let item = items?[indexPath.row] {
             content.text = item.name
+            content.textProperties.color = item.isDone ? UIColor.init(white: 1, alpha: 0.6) : UIColor.white
             cell.accessoryType = item.isDone ? .checkmark : .none
         } else {
             content.text = "No items in this category. Try to add some."
@@ -97,5 +95,9 @@ class ItemsViewController: UITableViewController {
             update(item)
         }
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destVC = segue.destination as! NewItemViewController
+        destVC.currentCategory = currentCategory
+    }
 }

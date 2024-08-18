@@ -11,6 +11,7 @@
 		495238FA2C703389004CFE71 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495238F92C703389004CFE71 /* Item.swift */; };
 		495238FD2C7038A6004CFE71 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 495238FC2C7038A6004CFE71 /* RealmSwift */; };
 		495238FF2C7123BF004CFE71 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495238FE2C7123BF004CFE71 /* ItemsViewController.swift */; };
+		495239012C7297BD004CFE71 /* NewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495239002C7297BD004CFE71 /* NewItemViewController.swift */; };
 		49AF57C32C702D5600515533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF57C22C702D5600515533 /* AppDelegate.swift */; };
 		49AF57C52C702D5600515533 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF57C42C702D5600515533 /* SceneDelegate.swift */; };
 		49AF57CA2C702D5600515533 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 49AF57C92C702D5600515533 /* Base */; };
@@ -23,6 +24,7 @@
 		495238F72C7032F3004CFE71 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		495238F92C703389004CFE71 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		495238FE2C7123BF004CFE71 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
+		495239002C7297BD004CFE71 /* NewItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemViewController.swift; sourceTree = "<group>"; };
 		49AF57BF2C702D5600515533 /* GetItDone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetItDone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49AF57C22C702D5600515533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49AF57C42C702D5600515533 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			children = (
 				49AF57DB2C7030BA00515533 /* CategoryViewController.swift */,
 				495238FE2C7123BF004CFE71 /* ItemsViewController.swift */,
+				495239002C7297BD004CFE71 /* NewItemViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 				49AF57C32C702D5600515533 /* AppDelegate.swift in Sources */,
 				495238FA2C703389004CFE71 /* Item.swift in Sources */,
 				49AF57C52C702D5600515533 /* SceneDelegate.swift in Sources */,
+				495239012C7297BD004CFE71 /* NewItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,5 +12,6 @@ class Item: Object {
     @Persisted var name: String
     @Persisted var createdDate: Date
     @Persisted var isDone: Bool
-    
+    @Persisted var scheduleIdentifier: String
+    @Persisted var scheduledDate: Date
 }

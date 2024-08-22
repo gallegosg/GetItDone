@@ -7,13 +7,26 @@
 
 import UIKit
 import RealmSwift
+
+protocol NewItemViewConotrollerDelegate {
+    func didDismissNewItemView()
+}
+
 class NewItemViewController: UIViewController {
     let realm = try! Realm()
     var currentCategory: Category?
     var datePickerIsChanged: Bool = false
-    
+    var delegate: NewItemViewConotrollerDelegate?
+    var onDismiss: (() -> Void)?
+
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var itemName: UITextField!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.hideKeyboardWhenTappedAround() 
+    }
 
     @IBAction func datePickerUpdated(_ sender: UIDatePicker) {
         datePickerIsChanged = true
@@ -41,7 +54,9 @@ class NewItemViewController: UIViewController {
                 category.items.append(newItem)
             }
             
-            dismiss(animated: true)
+            dismiss(animated: true) {
+                self.onDismiss?()
+            }
         } catch {
             print(error)
         }
@@ -103,5 +118,17 @@ class NewItemViewController: UIViewController {
             // Handle errors that may occur during add.
             print(error)
         }
+    }
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

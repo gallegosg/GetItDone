@@ -12,6 +12,7 @@
 		495238FF2C7123BF004CFE71 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495238FE2C7123BF004CFE71 /* ItemsViewController.swift */; };
 		495239012C7297BD004CFE71 /* NewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495239002C7297BD004CFE71 /* NewItemViewController.swift */; };
 		495239042C73F9E6004CFE71 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 495239032C73F9E6004CFE71 /* RealmSwift */; };
+		495239052C76E234004CFE71 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 495239032C73F9E6004CFE71 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		49AF57C32C702D5600515533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF57C22C702D5600515533 /* AppDelegate.swift */; };
 		49AF57C52C702D5600515533 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF57C42C702D5600515533 /* SceneDelegate.swift */; };
 		49AF57CA2C702D5600515533 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 49AF57C92C702D5600515533 /* Base */; };
@@ -19,6 +20,20 @@
 		49AF57CF2C702D5800515533 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 49AF57CE2C702D5800515533 /* Base */; };
 		49AF57DC2C7030BA00515533 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF57DB2C7030BA00515533 /* CategoryViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		495239062C76E234004CFE71 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				495239052C76E234004CFE71 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		495238F72C7032F3004CFE71 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -107,6 +122,7 @@
 				49AF57BB2C702D5600515533 /* Sources */,
 				49AF57BC2C702D5600515533 /* Frameworks */,
 				49AF57BD2C702D5600515533 /* Resources */,
+				495239062C76E234004CFE71 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

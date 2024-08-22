@@ -21,6 +21,7 @@ class ItemsViewController: UITableViewController {
     func loadItems() {
         items = currentCategory?.items.sorted(byKeyPath: "name", ascending: true)
         title = currentCategory?.name
+        tableView.reloadData()
     }
     
     func update(_ item: Item) {
@@ -89,6 +90,9 @@ class ItemsViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destVC = segue.destination as! NewItemViewController
         destVC.currentCategory = currentCategory
+        destVC.onDismiss = { [weak self] in
+            self?.loadItems()
+        }
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

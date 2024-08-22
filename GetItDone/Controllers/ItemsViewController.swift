@@ -36,34 +36,17 @@ class ItemsViewController: UITableViewController {
     
     @IBAction func addItemPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "goToNewItem", sender: self)
-//        var textField = UITextField()
-//        let alertController = UIAlertController(title: "New Item", message: "Add the name of the item", preferredStyle: .alert)
-//        let alertAction = UIAlertAction(title: "Add", style: .default) { action in
-//            let newItem = Item()
-//            newItem.name = textField.text!
-//            newItem.createdDate = Date()
-//            do {
-//                try self.realm.write {
-//                    self.currentCategory?.items.append(newItem)
-//                }
-//                self.tableView.reloadData()
-//            } catch {
-//                print(error)
-//            }
-//        }
-//        
-//        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel) { action in
-//            self.dismiss(animated: true)
-//        }
-//        
-//        alertController.addTextField { alertTextField in
-//            alertTextField.placeholder = "Name"
-//            textField = alertTextField
-//        }
-//        alertController.addAction(alertAction)
-//        alertController.addAction(dismissAction)
-        
-//        present(alertController, animated: true)
+    }
+    
+    func delete(_ item: Item) {
+        do {
+            try self.realm.write {
+                self.realm.delete(item)
+            }
+            tableView.reloadData()
+        } catch {
+            print(error)
+        }
     }
     
     // MARK: - Table view data source
@@ -79,7 +62,14 @@ class ItemsViewController: UITableViewController {
         if let item = items?[indexPath.row] {
             content.text = item.name
             content.textProperties.color = item.isDone ? UIColor.init(white: 1, alpha: 0.6) : UIColor.white
-            cell.accessoryType = item.isDone ? .checkmark : .none
+            content.image = item.isDone ? UIImage(systemName: "circle.fill") : UIImage(systemName: "circle")
+            if !item.scheduleIdentifier.isEmpty {
+                content.image = item.isDone ? UIImage(systemName: "clock.fill") : UIImage(systemName: "clock")
+                let df = DateFormatter()
+                df.dateFormat = "hh:mm a MMM dd, yyyy"
+                content.secondaryText = df.string(from: item.scheduledDate)
+                content.secondaryTextProperties.color = item.isDone ? UIColor.init(white: 1, alpha: 0.6) : UIColor.white
+            }
         } else {
             content.text = "No items in this category. Try to add some."
         }
@@ -99,5 +89,20 @@ class ItemsViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destVC = segue.destination as! NewItemViewController
         destVC.currentCategory = currentCategory
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+            //Write your code in here
+            if let item = self.items?[indexPath.row] {
+                self.delete(item)
+            }
+        }
+        
+        delete.image = UIImage(named: "deleteIcon")
+                
+        let swipeActions = UISwipeActionsConfiguration(actions: [delete])
+        
+        return swipeActions
     }
 }

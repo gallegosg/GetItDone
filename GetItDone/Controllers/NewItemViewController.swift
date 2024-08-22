@@ -19,16 +19,18 @@ class NewItemViewController: UIViewController {
         datePickerIsChanged = true
     }
     @IBAction func createButtonPressed(_ sender: UIButton) {
+        let identifier = UUID().uuidString
         let newItem = Item()
         newItem.name = itemName.text!
         newItem.createdDate = Date()
-        
+
         //create notification
         if datePickerIsChanged {
-            if requestNotificationAuthorization() {
-                let identifier = UUID().uuidString
-                createCalendarNotification(with: identifier)
+            Task {
+                await handleNotifications(with: identifier)
             }
+            newItem.scheduleIdentifier = identifier
+            newItem.scheduledDate = datePicker.date
         }
         
         guard let category = currentCategory else {
@@ -38,63 +40,68 @@ class NewItemViewController: UIViewController {
             try self.realm.write {
                 category.items.append(newItem)
             }
-        
+            
             dismiss(animated: true)
         } catch {
             print(error)
         }
     }
     
-    func createCalendarNotification(with identifier: String) {
-        let title = "Time to Get It Done"
-        let body = itemName.text!
-        let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: datePicker.date)
-
-        let notificationCenter = UNUserNotificationCenter.current()
-        let content = UNMutableNotificationContent()
-        content.title = title
-        content.body = body
-        content.sound = UNNotificationSound.default
+    func requestNotificationAuthorization() async -> Bool {
+        let center = UNUserNotificationCenter.current()
+        let settings = await center.notificationSettings()
         
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-        
-        notificationCenter.removeDeliveredNotifications(withIdentifiers: [identifier]) // Remove previous pending notification with same identifier
-        
-        notificationCenter.add(request) { error in
-            if let error = error {
-                print("Error scheduling notification: \(error)")
+        switch settings.authorizationStatus {
+        case .notDetermined:
+            let granted = try? await center.requestAuthorization(options: [.alert, .badge, .sound])
+            return granted ?? false
+        case .denied:
+            print("Notification access denied")
+            return false
+        case .authorized:
+            print("Notification access granted.")
+            return true
+        default:
+            return false
+        }
+    }
+    
+    func handleNotifications(with identifier: String) async {
+        let hasAccess = await requestNotificationAuthorization()
+        DispatchQueue.main.async {
+            if hasAccess {
+                print("User granted notification access.")
+                Task {
+                    await self.setupScheduledNotification(with: identifier)
+                }
             } else {
-                print("Notification \(content.title) added")
+                print("User denied notification access.")
             }
         }
     }
     
-    func requestNotificationAuthorization() -> Bool {
-        let center = UNUserNotificationCenter.current()
-        var hasAccess = false
-        center.getNotificationSettings { settings in
-            switch settings.authorizationStatus {
-            case .notDetermined:
-                center.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
-                    if granted {
-                        print("Notification access granted.")
-                        hasAccess = true
-                    } else {
-                        hasAccess = false
-                        print("Notification access denied.\(String(describing: error?.localizedDescription))")
-                    }
-                }
-            case .denied:
-                print("Notification access denied")
-                hasAccess = false
-            case .authorized:
-                print("Notification access granted.")
-                hasAccess = false
-            default:
-                hasAccess = false
-            }
+    func setupScheduledNotification(with identifier: String) async {
+        let content = UNMutableNotificationContent()
+        content.title = "Time to get it done"
+        content.body = itemName.text!
+        
+        let dateComponents = Calendar.current.dateComponents([.day, .year, .hour, .minute], from: datePicker.date)
+
+           
+        // Create the trigger as a repeating event.
+        let trigger = UNCalendarNotificationTrigger(
+                 dateMatching: dateComponents, repeats: true)
+        
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+
+
+        // Schedule the request with the system.
+        let notificationCenter = UNUserNotificationCenter.current()
+        do {
+            try await notificationCenter.add(request)
+        } catch {
+            // Handle errors that may occur during add.
+            print(error)
         }
-        return hasAccess
     }
 }

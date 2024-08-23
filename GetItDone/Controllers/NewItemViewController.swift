@@ -18,47 +18,90 @@ class NewItemViewController: UIViewController {
     var datePickerIsChanged: Bool = false
     var delegate: NewItemViewConotrollerDelegate?
     var onDismiss: (() -> Void)?
+    var editItem: Item?
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var itemName: UITextField!
+    @IBOutlet weak var submitButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.hideKeyboardWhenTappedAround() 
+        if let item = editItem {
+            itemName.text = item.name
+            if let date = item.scheduledDate {
+                datePicker.date = date
+            }
+            titleLabel.text = "Edit Item"
+            submitButton.setTitle("Save", for: .normal)
+        }
+        
+        self.hideKeyboardWhenTappedAround()
     }
-
+    
     @IBAction func datePickerUpdated(_ sender: UIDatePicker) {
         datePickerIsChanged = true
     }
-    @IBAction func createButtonPressed(_ sender: UIButton) {
+    
+    @IBAction func submitButtonPressed(_ sender: UIButton) {
         let identifier = UUID().uuidString
+        
+        if let item = editItem {
+            // Editing existing item
+            updateExistingItem(item, with: identifier)
+        } else {
+            // Creating new item
+            createNewItem(with: identifier)
+        }
+
+        dismiss(animated: true) {
+            self.onDismiss?()
+        }
+    }
+
+    // Method to update an existing item
+    private func updateExistingItem(_ item: Item, with identifier: String) {
+        do {
+            try self.realm.write {
+                item.name = itemName.text!
+                handleDatePickerChange(for: item, with: identifier)
+            }
+        } catch {
+            print(error)
+        }
+    }
+
+    // Method to create a new item
+    private func createNewItem(with identifier: String) {
         let newItem = Item()
         newItem.name = itemName.text!
         newItem.createdDate = Date()
-
-        //create notification
-        if datePickerIsChanged {
-            Task {
-                await handleNotifications(with: identifier)
-            }
-            newItem.scheduleIdentifier = identifier
-            newItem.scheduledDate = datePicker.date
-        }
+        
+        handleDatePickerChange(for: newItem, with: identifier)
         
         guard let category = currentCategory else {
             fatalError("No category found")
         }
+        
         do {
             try self.realm.write {
                 category.items.append(newItem)
             }
-            
-            dismiss(animated: true) {
-                self.onDismiss?()
-            }
         } catch {
             print(error)
+        }
+    }
+    
+    // Common method to handle date picker changes
+    private func handleDatePickerChange(for item: Item, with identifier: String) {
+        if datePickerIsChanged {
+            
+            Task {
+                await handleNotifications(with: identifier)
+            }
+            item.scheduleIdentifier = identifier
+            item.scheduledDate = datePicker.date
         }
     }
     

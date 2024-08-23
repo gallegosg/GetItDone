@@ -141,7 +141,7 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="createButtonPressed:" destination="7NO-RZ-Y5I" eventType="touchUpInside" id="XJI-12-be0"/>
+                                    <action selector="submitButtonPressed:" destination="7NO-RZ-Y5I" eventType="touchUpInside" id="XJI-12-be0"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -166,6 +166,8 @@
                     <connections>
                         <outlet property="datePicker" destination="ul4-AM-zRK" id="5mb-Hb-B2B"/>
                         <outlet property="itemName" destination="Sqs-rG-vUd" id="mdg-AK-xA0"/>
+                        <outlet property="submitButton" destination="zVz-OS-2Yl" id="d7i-RP-Kw6"/>
+                        <outlet property="titleLabel" destination="ra0-As-uiz" id="gTB-hs-e1B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bgv-nc-QNw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

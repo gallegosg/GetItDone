@@ -15,43 +15,62 @@ protocol NewItemViewConotrollerDelegate {
 class NewItemViewController: UIViewController {
     let realm = try! Realm()
     var currentCategory: Category?
-    var datePickerIsChanged: Bool = false
     var delegate: NewItemViewConotrollerDelegate?
     var onDismiss: (() -> Void)?
     var editItem: Item?
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var dateToggle: UISwitch!
     @IBOutlet weak var itemName: UITextField!
     @IBOutlet weak var submitButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        setup()
+        self.hideKeyboardWhenTappedAround()
+    }
+    
+    func setup() {
+        itemName.becomeFirstResponder()
+        submitButton.layer.cornerRadius = 15
+        dateToggle.setOn(false, animated: false)
+        datePicker.isEnabled = false
+        
+        //prefill date if edit
         if let item = editItem {
             itemName.text = item.name
             if let date = item.scheduledDate {
                 datePicker.date = date
+                dateToggle.isOn = true
+                datePicker.isEnabled = true
             }
-            titleLabel.text = "Edit Item"
+            titleLabel.text = "Edit"
             submitButton.setTitle("Save", for: .normal)
+            submitButton.imageView?.image = .none
         }
         
-        self.hideKeyboardWhenTappedAround()
     }
     
-    @IBAction func datePickerUpdated(_ sender: UIDatePicker) {
-        datePickerIsChanged = true
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let bottomLine = CALayer()
+        bottomLine.frame = CGRectMake(0.0, itemName.bounds.height + 3, itemName.bounds.width, 1.0)
+        bottomLine.backgroundColor = UIColor.init(white: 1, alpha: 0.2).cgColor
+        itemName.borderStyle = UITextField.BorderStyle.none
+        itemName.layer.addSublayer(bottomLine)
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
         let identifier = UUID().uuidString
         
         if let item = editItem {
-            // Editing existing item
             updateExistingItem(item, with: identifier)
         } else {
-            // Creating new item
             createNewItem(with: identifier)
         }
 
@@ -59,7 +78,14 @@ class NewItemViewController: UIViewController {
             self.onDismiss?()
         }
     }
-
+    @IBAction func dateToggleSwitched(_ sender: UISwitch) {
+        if sender.isOn {
+            datePicker.isEnabled = true
+        } else {
+            datePicker.isEnabled = false
+        }
+    }
+    
     // Method to update an existing item
     private func updateExistingItem(_ item: Item, with identifier: String) {
         do {
@@ -95,8 +121,7 @@ class NewItemViewController: UIViewController {
     
     // Common method to handle date picker changes
     private func handleDatePickerChange(for item: Item, with identifier: String) {
-        if datePickerIsChanged {
-            
+        if dateToggle.isOn {
             Task {
                 await handleNotifications(with: identifier)
             }

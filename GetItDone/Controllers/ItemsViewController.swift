@@ -50,6 +50,10 @@ class ItemsViewController: UITableViewController {
         }
     }
     
+    func goToEdit(item: Item) {
+        performSegue(withIdentifier: "goToNewItem", sender: item)
+    }
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,12 +68,15 @@ class ItemsViewController: UITableViewController {
             content.text = item.name
             content.textProperties.color = item.isDone ? UIColor.init(white: 1, alpha: 0.6) : UIColor.white
             content.image = item.isDone ? UIImage(systemName: "circle.fill") : UIImage(systemName: "circle")
-            if !item.scheduleIdentifier.isEmpty {
+            if let id = item.scheduleIdentifier, let date = item.scheduledDate {
+                
+            if !id.isEmpty {
                 content.image = item.isDone ? UIImage(systemName: "clock.fill") : UIImage(systemName: "clock")
                 let df = DateFormatter()
                 df.dateFormat = "hh:mm a MMM dd, yyyy"
-                content.secondaryText = df.string(from: item.scheduledDate)
+                content.secondaryText = df.string(from: date)
                 content.secondaryTextProperties.color = item.isDone ? UIColor.init(white: 1, alpha: 0.6) : UIColor.white
+            }
             }
         } else {
             content.text = "No items in this category. Try to add some."
@@ -90,6 +97,9 @@ class ItemsViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destVC = segue.destination as! NewItemViewController
         destVC.currentCategory = currentCategory
+        if let editItem = sender as? Item {
+            destVC.editItem = editItem
+        }
         destVC.onDismiss = { [weak self] in
             self?.loadItems()
         }
@@ -108,5 +118,29 @@ class ItemsViewController: UITableViewController {
         let swipeActions = UISwipeActionsConfiguration(actions: [delete])
         
         return swipeActions
+    }
+    
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil,
+                                          previewProvider: nil,
+                                          actionProvider: {
+            suggestedActions in
+            
+            guard let item = self.items?[indexPath.row] else {
+                fatalError("No item found")
+            }
+            let editAction =
+            UIAction(title: NSLocalizedString("Edit", comment: ""),
+                     image: UIImage(systemName: "pencil")) { action in
+                self.goToEdit(item: item)
+            }
+            let deleteAction =
+            UIAction(title: NSLocalizedString("Delete", comment: "Remove item from list"),
+                     image: UIImage(systemName: "trash"),
+                     attributes: .destructive) { action in
+                self.delete(item)
+            }
+            return UIMenu(title: "", children: [editAction, deleteAction])
+        })
     }
 }

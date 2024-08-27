@@ -65,18 +65,20 @@ class ItemsViewController: UITableViewController {
         var content = cell.defaultContentConfiguration()
         
         if let item = items?[indexPath.row] {
+            //text style for regular
             content.text = item.name
             content.textProperties.color = item.isDone ? UIColor.init(white: 1, alpha: 0.6) : UIColor.white
-            content.image = item.isDone ? UIImage(systemName: "circle.fill") : UIImage(systemName: "circle")
+            content.image = item.isDone ? UIImage(systemName: "circle.badge.checkmark.fill") : UIImage(systemName: "circle")
+            
             if let id = item.scheduleIdentifier, let date = item.scheduledDate {
-                
-            if !id.isEmpty {
-                content.image = item.isDone ? UIImage(systemName: "clock.fill") : UIImage(systemName: "clock")
-                let df = DateFormatter()
-                df.dateFormat = "hh:mm a MMM dd, yyyy"
-                content.secondaryText = df.string(from: date)
-                content.secondaryTextProperties.color = item.isDone ? UIColor.init(white: 1, alpha: 0.6) : UIColor.white
-            }
+                //text style for schedule
+                if !id.isEmpty {
+                    content.image = item.isDone ? UIImage(systemName: "clock.badge.checkmark.fill") : UIImage(systemName: "clock")
+                    let df = DateFormatter()
+                    df.dateFormat = "hh:mm a MMM dd, yyyy"
+                    content.secondaryText = df.string(from: date)
+                    content.secondaryTextProperties.color = item.isDone ? UIColor.init(white: 1, alpha: 0.6) : UIColor.white
+                }
             }
         } else {
             content.text = "No items in this category. Try to add some."

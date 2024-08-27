@@ -20,15 +20,13 @@ class NewItemViewController: UIViewController {
     var editItem: Item?
 
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var dataToggle: UIButton!
     @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var dateToggle: UISwitch!
     @IBOutlet weak var itemName: UITextField!
     @IBOutlet weak var submitButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         setup()
         self.hideKeyboardWhenTappedAround()
@@ -37,22 +35,30 @@ class NewItemViewController: UIViewController {
     func setup() {
         itemName.becomeFirstResponder()
         submitButton.layer.cornerRadius = 15
-        dateToggle.setOn(false, animated: false)
-        datePicker.isEnabled = false
-        
+        datePicker.minimumDate = Date()
+
         //prefill date if edit
         if let item = editItem {
             itemName.text = item.name
             if let date = item.scheduledDate {
                 datePicker.date = date
-                dateToggle.isOn = true
-                datePicker.isEnabled = true
+                dataToggle.isSelected = true
+                datePicker.minimumDate = date
             }
             titleLabel.text = "Edit"
             submitButton.setTitle("Save", for: .normal)
             submitButton.imageView?.image = .none
+            
         }
         
+        let checkedImage = UIImage(systemName: "checkmark.circle")! as UIImage
+        let uncheckedImage = UIImage(systemName: "circle")! as UIImage
+        
+        dataToggle.setImage(checkedImage, for: UIControl.State.selected)
+        dataToggle.setTitleColor(.accent, for: .selected)
+        
+        dataToggle.setImage(uncheckedImage, for: UIControl.State.normal)
+        dataToggle.setTitleColor(.label, for: .normal)
     }
     
     override func viewDidLayoutSubviews() {
@@ -78,12 +84,13 @@ class NewItemViewController: UIViewController {
             self.onDismiss?()
         }
     }
-    @IBAction func dateToggleSwitched(_ sender: UISwitch) {
-        if sender.isOn {
-            datePicker.isEnabled = true
-        } else {
-            datePicker.isEnabled = false
-        }
+    
+    @IBAction func dateToggleSwitched(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+    }
+    
+    @IBAction func datePickerChanged(_ sender: UIDatePicker) {
+        dataToggle.isSelected = true
     }
     
     // Method to update an existing item
@@ -121,7 +128,7 @@ class NewItemViewController: UIViewController {
     
     // Common method to handle date picker changes
     private func handleDatePickerChange(for item: Item, with identifier: String) {
-        if dateToggle.isOn {
+        if dataToggle.isSelected {
             Task {
                 await handleNotifications(with: identifier)
             }

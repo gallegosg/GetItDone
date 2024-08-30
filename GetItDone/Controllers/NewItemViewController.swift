@@ -18,7 +18,8 @@ class NewItemViewController: UIViewController {
     var delegate: NewItemViewConotrollerDelegate?
     var onDismiss: (() -> Void)?
     var editItem: Item?
-
+    var notificationHandler = NotificationHandler()
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dataToggle: UIButton!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -98,7 +99,7 @@ class NewItemViewController: UIViewController {
         do {
             try self.realm.write {
                 item.name = itemName.text!
-                handleDatePickerChange(for: item, with: identifier)
+                notificationHandler.handleDatePickerChange(for: item, with: identifier, date: datePicker.date, dataToggle: dataToggle, itemName: itemName.text!)
             }
         } catch {
             print(error)
@@ -111,7 +112,7 @@ class NewItemViewController: UIViewController {
         newItem.name = itemName.text!
         newItem.createdDate = Date()
         
-        handleDatePickerChange(for: newItem, with: identifier)
+        notificationHandler.handleDatePickerChange(for: newItem, with: identifier, date: datePicker.date, dataToggle: dataToggle, itemName: itemName.text!)
         
         guard let category = currentCategory else {
             fatalError("No category found")
@@ -122,75 +123,6 @@ class NewItemViewController: UIViewController {
                 category.items.append(newItem)
             }
         } catch {
-            print(error)
-        }
-    }
-    
-    // Common method to handle date picker changes
-    private func handleDatePickerChange(for item: Item, with identifier: String) {
-        if dataToggle.isSelected {
-            Task {
-                await handleNotifications(with: identifier)
-            }
-            item.scheduleIdentifier = identifier
-            item.scheduledDate = datePicker.date
-        }
-    }
-    
-    func requestNotificationAuthorization() async -> Bool {
-        let center = UNUserNotificationCenter.current()
-        let settings = await center.notificationSettings()
-        
-        switch settings.authorizationStatus {
-        case .notDetermined:
-            let granted = try? await center.requestAuthorization(options: [.alert, .badge, .sound])
-            return granted ?? false
-        case .denied:
-            print("Notification access denied")
-            return false
-        case .authorized:
-            print("Notification access granted.")
-            return true
-        default:
-            return false
-        }
-    }
-    
-    func handleNotifications(with identifier: String) async {
-        let hasAccess = await requestNotificationAuthorization()
-        DispatchQueue.main.async {
-            if hasAccess {
-                print("User granted notification access.")
-                Task {
-                    await self.setupScheduledNotification(with: identifier)
-                }
-            } else {
-                print("User denied notification access.")
-            }
-        }
-    }
-    
-    func setupScheduledNotification(with identifier: String) async {
-        let content = UNMutableNotificationContent()
-        content.title = "Time to get it done"
-        content.body = itemName.text!
-        
-        let dateComponents = Calendar.current.dateComponents([.day, .year, .hour, .minute], from: datePicker.date)
-
-           
-        // Create the trigger as a repeating event.
-        let trigger = UNCalendarNotificationTrigger(
-                 dateMatching: dateComponents, repeats: true)
-        
-        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-
-
-        // Schedule the request with the system.
-        let notificationCenter = UNUserNotificationCenter.current()
-        do {
-            try await notificationCenter.add(request)
-        } catch {
-            // Handle errors that may occur during add.
             print(error)
         }
     }

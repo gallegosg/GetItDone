@@ -13,6 +13,8 @@
 		495239012C7297BD004CFE71 /* NewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495239002C7297BD004CFE71 /* NewItemViewController.swift */; };
 		495239042C73F9E6004CFE71 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 495239032C73F9E6004CFE71 /* RealmSwift */; };
 		495239052C76E234004CFE71 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 495239032C73F9E6004CFE71 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		495239162C7EC4D6004CFE71 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495239152C7EC4D6004CFE71 /* NotificationHandler.swift */; };
+		495239182C816BF3004CFE71 /* CategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495239172C816BF3004CFE71 /* CategoryManager.swift */; };
 		49AF57C32C702D5600515533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF57C22C702D5600515533 /* AppDelegate.swift */; };
 		49AF57C52C702D5600515533 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF57C42C702D5600515533 /* SceneDelegate.swift */; };
 		49AF57CA2C702D5600515533 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 49AF57C92C702D5600515533 /* Base */; };
@@ -40,6 +42,8 @@
 		495238F92C703389004CFE71 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		495238FE2C7123BF004CFE71 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		495239002C7297BD004CFE71 /* NewItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemViewController.swift; sourceTree = "<group>"; };
+		495239152C7EC4D6004CFE71 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
+		495239172C816BF3004CFE71 /* CategoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryManager.swift; sourceTree = "<group>"; };
 		49AF57BF2C702D5600515533 /* GetItDone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetItDone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49AF57C22C702D5600515533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49AF57C42C702D5600515533 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,8 +71,17 @@
 			children = (
 				495238F72C7032F3004CFE71 /* Category.swift */,
 				495238F92C703389004CFE71 /* Item.swift */,
+				495239172C816BF3004CFE71 /* CategoryManager.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		495239142C7EC4C8004CFE71 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				495239152C7EC4D6004CFE71 /* NotificationHandler.swift */,
+			);
+			path = Handlers;
 			sourceTree = "<group>";
 		};
 		49AF57B62C702D5600515533 = {
@@ -90,6 +103,7 @@
 		49AF57C12C702D5600515533 /* GetItDone */ = {
 			isa = PBXGroup;
 			children = (
+				495239142C7EC4C8004CFE71 /* Handlers */,
 				495238F62C7032E0004CFE71 /* Data */,
 				49AF57DD2C7031DE00515533 /* Controllers */,
 				49AF57C22C702D5600515533 /* AppDelegate.swift */,
@@ -191,6 +205,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				49AF57DC2C7030BA00515533 /* CategoryViewController.swift in Sources */,
+				495239162C7EC4D6004CFE71 /* NotificationHandler.swift in Sources */,
+				495239182C816BF3004CFE71 /* CategoryManager.swift in Sources */,
 				495238FF2C7123BF004CFE71 /* ItemsViewController.swift in Sources */,
 				495238F82C7032F3004CFE71 /* Category.swift in Sources */,
 				49AF57C32C702D5600515533 /* AppDelegate.swift in Sources */,

@@ -55,6 +55,15 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="pVU-lz-8a6">
                         <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="AccentColor"/>
+                        <color key="barTintColor" name="AccentColor"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" name="AccentColor"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" name="AccentColor"/>
+                            <color key="textShadowColor" name="AccentColor"/>
+                        </textAttributes>
                         <navigationBarAppearance key="scrollEdgeAppearance"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -118,70 +127,79 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sqs-rG-vUd">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What needs to get done..." textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sqs-rG-vUd">
                                 <rect key="frame" x="125" y="195" width="249" height="19"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHt-Hg-NUS">
-                                <rect key="frame" x="322" y="156" width="49" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHt-Hg-NUS">
+                                <rect key="frame" x="234" y="156" width="137" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ul4-AM-zRK">
-                                <rect key="frame" x="89" y="310.33333333333331" width="288" height="36"/>
+                                <rect key="frame" x="89" y="323" width="288" height="36"/>
+                                <connections>
+                                    <action selector="datePickerChanged:" destination="7NO-RZ-Y5I" eventType="valueChanged" id="oXr-3h-Ejb"/>
+                                </connections>
                             </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DvV-rO-Hou">
-                                <rect key="frame" x="332" y="271.33333333333331" width="39" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DvV-rO-Hou">
+                                <rect key="frame" x="329.66666666666669" y="284" width="41.333333333333314" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RbK-iZ-KXC">
-                                <rect key="frame" x="16" y="268.33333333333331" width="51" height="31"/>
-                                <color key="onTintColor" name="AccentColor"/>
-                                <connections>
-                                    <action selector="dateToggleSwitched:" destination="7NO-RZ-Y5I" eventType="valueChanged" id="RuV-J9-2lP"/>
-                                </connections>
-                            </switch>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVz-OS-2Yl">
-                                <rect key="frame" x="307" y="703" width="70" height="70"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVz-OS-2Yl">
+                                <rect key="frame" x="307" y="705.66666666666663" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="XdK-p1-CPz"/>
+                                </constraints>
+                                <color key="tintColor" name="AccentColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system"/>
                                 <connections>
                                     <action selector="submitButtonPressed:" destination="7NO-RZ-Y5I" eventType="touchUpInside" id="XJI-12-be0"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJE-kO-6vR">
+                                <rect key="frame" x="200.66666666666666" y="279" width="99.999999999999972" height="34"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="circle" catalog="system" title=" Notify"/>
+                                <connections>
+                                    <action selector="dateToggleSwitched:" destination="7NO-RZ-Y5I" eventType="touchUpInside" id="aG1-1L-L6E"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="a99-Gi-uK9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="DvV-rO-Hou" firstAttribute="leading" secondItem="BJE-kO-6vR" secondAttribute="trailing" constant="29" id="30n-94-jua"/>
                             <constraint firstItem="a99-Gi-uK9" firstAttribute="trailing" secondItem="Sqs-rG-vUd" secondAttribute="trailing" constant="19" id="6Dr-gR-bJU"/>
                             <constraint firstItem="a99-Gi-uK9" firstAttribute="trailing" secondItem="DvV-rO-Hou" secondAttribute="trailing" constant="22" id="AZi-pX-c90"/>
-                            <constraint firstItem="a99-Gi-uK9" firstAttribute="bottom" secondItem="zVz-OS-2Yl" secondAttribute="bottom" constant="69" id="B7m-Qe-Ak4"/>
+                            <constraint firstItem="BJE-kO-6vR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="a99-Gi-uK9" secondAttribute="leading" symbolic="YES" id="Csp-NP-Ftu"/>
                             <constraint firstItem="ul4-AM-zRK" firstAttribute="leading" secondItem="a99-Gi-uK9" secondAttribute="leading" constant="89" id="FHh-kT-sW4"/>
                             <constraint firstItem="a99-Gi-uK9" firstAttribute="trailing" secondItem="ra0-As-uiz" secondAttribute="trailing" constant="19" id="Fg8-1C-hIk"/>
                             <constraint firstItem="a99-Gi-uK9" firstAttribute="trailing" secondItem="ul4-AM-zRK" secondAttribute="trailing" constant="16" id="FtT-Ua-dTC"/>
+                            <constraint firstItem="yHt-Hg-NUS" firstAttribute="leading" secondItem="a99-Gi-uK9" secondAttribute="leading" constant="234" id="J4D-2M-NTG"/>
+                            <constraint firstItem="a99-Gi-uK9" firstAttribute="bottom" secondItem="zVz-OS-2Yl" secondAttribute="bottom" constant="66.333333333333371" id="JUh-QS-5el"/>
                             <constraint firstItem="ra0-As-uiz" firstAttribute="leading" secondItem="a99-Gi-uK9" secondAttribute="leading" constant="212" id="Kcg-eh-fOd"/>
-                            <constraint firstItem="DvV-rO-Hou" firstAttribute="top" secondItem="Sqs-rG-vUd" secondAttribute="bottom" constant="57.333333333333314" id="ORX-cz-vD7"/>
-                            <constraint firstItem="RbK-iZ-KXC" firstAttribute="leading" secondItem="a99-Gi-uK9" secondAttribute="leading" constant="16" id="TdT-y3-fB7"/>
+                            <constraint firstItem="DvV-rO-Hou" firstAttribute="top" secondItem="Sqs-rG-vUd" secondAttribute="bottom" constant="70" id="ORX-cz-vD7"/>
+                            <constraint firstItem="BJE-kO-6vR" firstAttribute="centerY" secondItem="DvV-rO-Hou" secondAttribute="centerY" id="Ra8-zV-oLd"/>
                             <constraint firstItem="Sqs-rG-vUd" firstAttribute="leading" secondItem="a99-Gi-uK9" secondAttribute="leading" constant="125" id="YCA-dh-8Ez"/>
                             <constraint firstItem="ul4-AM-zRK" firstAttribute="top" secondItem="DvV-rO-Hou" secondAttribute="bottom" constant="15" id="bzu-Nn-orB"/>
-                            <constraint firstItem="RbK-iZ-KXC" firstAttribute="top" secondItem="Sqs-rG-vUd" secondAttribute="bottom" constant="54.333333333333343" id="eAh-lU-QbF"/>
                             <constraint firstItem="a99-Gi-uK9" firstAttribute="trailing" secondItem="zVz-OS-2Yl" secondAttribute="trailing" constant="16" id="eDn-eA-MS9"/>
-                            <constraint firstItem="DvV-rO-Hou" firstAttribute="leading" relation="lessThanOrEqual" secondItem="RbK-iZ-KXC" secondAttribute="trailing" constant="267" id="ghI-iY-ILD"/>
                             <constraint firstItem="Sqs-rG-vUd" firstAttribute="top" secondItem="yHt-Hg-NUS" secondAttribute="bottom" constant="15" id="hid-kG-ngu"/>
                             <constraint firstItem="ra0-As-uiz" firstAttribute="top" secondItem="a99-Gi-uK9" secondAttribute="top" constant="31" id="ilG-RV-vKa"/>
                             <constraint firstItem="zVz-OS-2Yl" firstAttribute="leading" secondItem="a99-Gi-uK9" secondAttribute="leading" constant="307" id="jLb-6p-gnE"/>
                             <constraint firstItem="yHt-Hg-NUS" firstAttribute="top" secondItem="ra0-As-uiz" secondAttribute="bottom" constant="77" id="jQh-Fb-7rv"/>
-                            <constraint firstItem="yHt-Hg-NUS" firstAttribute="leading" secondItem="a99-Gi-uK9" secondAttribute="leading" constant="322" id="mZ6-dX-erN"/>
                             <constraint firstItem="a99-Gi-uK9" firstAttribute="trailing" secondItem="yHt-Hg-NUS" secondAttribute="trailing" constant="22" id="ypu-lf-e0c"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dataToggle" destination="BJE-kO-6vR" id="qaZ-69-xJh"/>
                         <outlet property="datePicker" destination="ul4-AM-zRK" id="5mb-Hb-B2B"/>
-                        <outlet property="dateToggle" destination="RbK-iZ-KXC" id="kbX-fX-ciC"/>
                         <outlet property="itemName" destination="Sqs-rG-vUd" id="mdg-AK-xA0"/>
                         <outlet property="submitButton" destination="zVz-OS-2Yl" id="d7i-RP-Kw6"/>
                         <outlet property="titleLabel" destination="ra0-As-uiz" id="gTB-hs-e1B"/>
@@ -193,10 +211,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="circle" catalog="system" width="128" height="123"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.7803921568627451" green="0.24313725490196078" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

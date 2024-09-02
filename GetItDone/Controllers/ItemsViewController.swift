@@ -10,7 +10,8 @@ import RealmSwift
 
 class ItemsViewController: UITableViewController {
     let realm = try! Realm()
-
+    let settingsData = SettingsData()
+    
     var items: Results<Item>?
     var currentCategory: Category? {
         didSet {
@@ -80,6 +81,10 @@ class ItemsViewController: UITableViewController {
                     content.secondaryText = df.string(from: date)
                     content.secondaryTextProperties.color = item.isDone ? .gray : .label
                 }
+            }
+            
+            if let color = settingsData.getSetting(for: K.appColorKey) {
+                cell.tintColor = UIColor(hex: color)
             }
         } else {
             content.text = "No items in this category. Try to add some."
@@ -153,5 +158,16 @@ class ItemsViewController: UITableViewController {
             })
         }
         return nil
+    }
+}
+
+extension UIImage {
+    func tinted(with color: UIColor, isOpaque: Bool = false) -> UIImage? {
+        let format = imageRendererFormat
+        format.opaque = isOpaque
+        return UIGraphicsImageRenderer(size: size, format: format).image { _ in
+            color.set()
+            withRenderingMode(.alwaysTemplate).draw(at: .zero)
+        }
     }
 }

@@ -19,6 +19,7 @@ class NewItemViewController: UIViewController {
     var onDismiss: (() -> Void)?
     var editItem: Item?
     var notificationHandler = NotificationHandler()
+    let settingsData = SettingsData()
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dataToggle: UIButton!
@@ -31,6 +32,10 @@ class NewItemViewController: UIViewController {
         
         setup()
         self.hideKeyboardWhenTappedAround()
+        
+        if let color = settingsData.getSetting(for: K.appColorKey) {
+            submitButton.tintColor = UIColor(hex: color)
+        }
     }
     
     func setup() {
@@ -46,10 +51,7 @@ class NewItemViewController: UIViewController {
                 dataToggle.isSelected = true
                 datePicker.minimumDate = date
             }
-            titleLabel.text = "Edit"
-            submitButton.setTitle("Save", for: .normal)
-            submitButton.imageView?.image = .none
-            
+            titleLabel.text = "Edit"            
         }
         
         let checkedImage = UIImage(systemName: "checkmark.circle")! as UIImage

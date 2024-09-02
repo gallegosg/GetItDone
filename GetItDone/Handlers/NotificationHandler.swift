@@ -34,6 +34,18 @@ struct NotificationHandler {
         }
     }
     
+    func checkNotificationStatus() async -> Bool {
+        let center = UNUserNotificationCenter.current()
+        let settings = await center.notificationSettings()
+        
+        switch settings.authorizationStatus {
+        case .authorized:
+            return true
+        default:
+            return false
+        }
+    }
+    
     private func requestNotificationAuthorization() async -> Bool {
         let center = UNUserNotificationCenter.current()
         let settings = await center.notificationSettings()

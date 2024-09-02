@@ -11,10 +11,19 @@ import RealmSwift
 class CategoryViewController: UITableViewController {
     var categories: Results<Category>?
     var categoryManager = CategoryManager()
+    let settingsData = SettingsData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCategories()
+        
+        initApp()
+    }
+    
+    func initApp() {
+        if let color = settingsData.getSetting(for: K.appColorKey) {
+            navigationController?.navigationBar.tintColor = UIColor(hex: color)
+        }
     }
 
     @IBAction func addCategoryPressed(_ sender: UIBarButtonItem) {
@@ -37,6 +46,10 @@ class CategoryViewController: UITableViewController {
         alertController.addAction(dismissAction)
         
         present(alertController, animated: true)
+    }
+    
+    @IBAction func settingsPressed(_ sender: Any) {
+        performSegue(withIdentifier: K.settingsSegue, sender: self)
     }
     
     func loadCategories() {
@@ -118,14 +131,17 @@ class CategoryViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let categories = categories, !categories.isEmpty {
-            performSegue(withIdentifier: "goToItems", sender: self)
+            performSegue(withIdentifier: K.itemsSegue, sender: self)
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destVC = segue.destination as! ItemsViewController
-        if let indexPath = tableView.indexPathForSelectedRow {
-            destVC.currentCategory = categories?[indexPath.row]
+        if segue.identifier == K.itemsSegue {
+            let destVC = segue.destination as! ItemsViewController
+            
+            if let indexPath = tableView.indexPathForSelectedRow {
+                destVC.currentCategory = categories?[indexPath.row]
+            }
         }
     }
 }

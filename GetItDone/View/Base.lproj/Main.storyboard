@@ -33,6 +33,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Categories" id="OSa-Ex-5fw">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="gear" catalog="system" id="MtN-hv-36A">
+                            <connections>
+                                <action selector="settingsPressed:" destination="ckt-0e-T65" id="5xL-u9-v1Y"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="N8c-IM-tbk">
                             <connections>
                                 <action selector="addCategoryPressed:" destination="ckt-0e-T65" id="cC6-zR-Og7"/>
@@ -41,6 +46,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="kzl-EA-KzN" kind="show" identifier="goToItems" id="2lU-Xr-5OM"/>
+                        <segue destination="WbN-Jx-A41" kind="show" identifier="goToSettings" id="Myt-mK-9JI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q14-Ik-yCh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -157,7 +163,7 @@
                                 </constraints>
                                 <color key="tintColor" name="AccentColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system"/>
+                                <buttonConfiguration key="configuration" style="filled" image="arrowshape.right.fill" catalog="system"/>
                                 <connections>
                                     <action selector="submitButtonPressed:" destination="7NO-RZ-Y5I" eventType="touchUpInside" id="XJI-12-be0"/>
                                 </connections>
@@ -209,12 +215,72 @@
             </objects>
             <point key="canvasLocation" x="2622.1374045801526" y="-27.464788732394368"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="4ah-Kh-pID">
+            <objects>
+                <viewController id="WbN-Jx-A41" customClass="SettingsViewController" customModule="GetItDone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fSJ-Bs-oka">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <colorWell contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="27a-ii-qXr">
+                                <rect key="frame" x="310" y="195" width="28" height="29"/>
+                            </colorWell>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Accent Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnL-YF-Jfe">
+                                <rect key="frame" x="16" y="199" width="134" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications Enabled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p58-9a-ttm">
+                                <rect key="frame" x="16" y="270" width="162" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QT9-Ou-aHm">
+                                <rect key="frame" x="280.66666666666669" y="263" width="87" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Settings"/>
+                                <connections>
+                                    <action selector="settingsButtonPressed:" destination="WbN-Jx-A41" eventType="touchUpInside" id="2of-jA-VNa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Kyb-Vw-3KH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="27a-ii-qXr" firstAttribute="centerY" secondItem="bnL-YF-Jfe" secondAttribute="centerY" id="5VB-SI-HCo"/>
+                            <constraint firstItem="QT9-Ou-aHm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="p58-9a-ttm" secondAttribute="trailing" constant="8" symbolic="YES" id="DQ9-c0-2aL"/>
+                            <constraint firstItem="QT9-Ou-aHm" firstAttribute="top" secondItem="27a-ii-qXr" secondAttribute="bottom" constant="39" id="OoL-dV-bGH"/>
+                            <constraint firstItem="QT9-Ou-aHm" firstAttribute="centerX" secondItem="27a-ii-qXr" secondAttribute="centerX" id="e1k-u3-ey5"/>
+                            <constraint firstItem="bnL-YF-Jfe" firstAttribute="leading" secondItem="Kyb-Vw-3KH" secondAttribute="leading" constant="16" id="eDo-gA-JUw"/>
+                            <constraint firstItem="27a-ii-qXr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bnL-YF-Jfe" secondAttribute="trailing" constant="8" symbolic="YES" id="fqz-nG-NKo"/>
+                            <constraint firstItem="Kyb-Vw-3KH" firstAttribute="trailing" secondItem="27a-ii-qXr" secondAttribute="trailing" constant="55" id="g0e-wN-DCh"/>
+                            <constraint firstItem="p58-9a-ttm" firstAttribute="top" secondItem="bnL-YF-Jfe" secondAttribute="bottom" constant="50" id="l1M-yZ-gSX"/>
+                            <constraint firstItem="p58-9a-ttm" firstAttribute="leading" secondItem="Kyb-Vw-3KH" secondAttribute="leading" constant="16" id="tfX-KN-Fv4"/>
+                            <constraint firstItem="27a-ii-qXr" firstAttribute="top" secondItem="Kyb-Vw-3KH" secondAttribute="top" constant="40" id="vzr-th-8s1"/>
+                            <constraint firstItem="bnL-YF-Jfe" firstAttribute="top" secondItem="Kyb-Vw-3KH" secondAttribute="top" constant="44" id="z8n-0b-ko0"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="Py5-jb-nb7"/>
+                    <connections>
+                        <outlet property="colorPicker" destination="27a-ii-qXr" id="4un-My-mmb"/>
+                        <outlet property="notificationsLabel" destination="p58-9a-ttm" id="Unq-gF-0xv"/>
+                        <outlet property="settingsButton" destination="QT9-Ou-aHm" id="dmj-MG-bte"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zth-Cu-LGV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1085" y="701"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="arrowshape.right.fill" catalog="system" width="128" height="104"/>
         <image name="circle" catalog="system" width="128" height="123"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="gear" catalog="system" width="128" height="122"/>
         <namedColor name="AccentColor">
-            <color red="0.7803921568627451" green="0.24313725490196078" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77999997138977051" green="0.24300000071525574" blue="0.11400000005960464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

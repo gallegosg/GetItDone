@@ -18,6 +18,18 @@ class ItemsViewController: UITableViewController {
             loadItems()
         }
     }
+    
+    private lazy var emptyListView: EmptyList = {
+        let allViewsInXibArray = Bundle.main.loadNibNamed("EmptyList", owner: self, options: nil)
+        let view = allViewsInXibArray?.first as! EmptyList
+        view.frame = self.view.bounds
+        return view
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
+    }
 
     func loadItems() {
         items = currentCategory?.items.sorted(byKeyPath: "name", ascending: true)
@@ -60,26 +72,63 @@ class ItemsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (items?.count ?? 0) > 0 ? items!.count : 1
     }
+//    
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+//        var content = cell.defaultContentConfiguration()
+//        
+//        if let items = items, !items.isEmpty {
+//            let item = items[indexPath.row]
+//            //text style for regular
+//            content.text = item.name
+//            content.textProperties.color = item.isDone ? .gray : .label
+//            content.image = item.isDone ? UIImage(systemName: "circle.badge.checkmark.fill") : UIImage(systemName: "circle")
+//            
+//            if let id = item.scheduleIdentifier, let date = item.scheduledDate {
+//                //text style for schedule
+//                if !id.isEmpty {
+//                    content.image = item.isDone ? UIImage(systemName: "clock.badge.checkmark.fill") : UIImage(systemName: "clock")
+//                    let df = DateFormatter()
+//                    df.dateFormat = "hh:mm a MMM dd, yyyy"
+//                    content.secondaryText = df.string(from: date)
+//                    content.secondaryTextProperties.color = item.isDone ? .gray : .label
+//                }
+//            }
+//            
+//            if let color = settingsData.getSetting(for: K.appColorKey) {
+//                cell.tintColor = UIColor(hex: color)
+//            }
+//        } else {
+//            content.text = "No items in this category. Try to add some."
+//        }
+//        
+//        cell.contentConfiguration = content
+//        
+//        return cell
+//    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 110
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        var content = cell.defaultContentConfiguration()
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! ItemTableViewCell
         
         if let items = items, !items.isEmpty {
             let item = items[indexPath.row]
             //text style for regular
-            content.text = item.name
-            content.textProperties.color = item.isDone ? .gray : .label
-            content.image = item.isDone ? UIImage(systemName: "circle.badge.checkmark.fill") : UIImage(systemName: "circle")
+            cell.itemName.text = item.name
+            cell.itemName.textColor = item.isDone ? .gray : .label
+            cell.itemDate.text = ""
+            cell.leftImage.image = item.isDone ? UIImage(systemName: "circle.badge.checkmark.fill") : UIImage(systemName: "circle")
             
             if let id = item.scheduleIdentifier, let date = item.scheduledDate {
                 //text style for schedule
                 if !id.isEmpty {
-                    content.image = item.isDone ? UIImage(systemName: "clock.badge.checkmark.fill") : UIImage(systemName: "clock")
-                    let df = DateFormatter()
-                    df.dateFormat = "hh:mm a MMM dd, yyyy"
-                    content.secondaryText = df.string(from: date)
-                    content.secondaryTextProperties.color = item.isDone ? .gray : .label
+                    cell.leftImage.image = item.isDone ? UIImage(systemName: "clock.badge.checkmark.fill") : UIImage(systemName: "clock")
+                    let dateString = getItemDateFormat(date)
+                    cell.itemDate.text = dateString
+                    cell.itemDate.textColor = item.isDone ? .gray : .label
                 }
             }
             
@@ -87,12 +136,39 @@ class ItemsViewController: UITableViewController {
                 cell.tintColor = UIColor(hex: color)
             }
         } else {
-            content.text = "No items in this category. Try to add some."
+            cell.itemName.text = "No items in this category. Try to add some."
         }
-        
-        cell.contentConfiguration = content
-        
+                
         return cell
+    }
+    
+    private func getItemDateFormat(_ date: Date) -> String {
+        let components = date.get(.day, .month, .year)
+        let today = Date()
+        let currentDayComponents = today.get(.day, .month, .year)
+        
+        let df = DateFormatter()
+        df.dateFormat = "hh:mm a MMM dd, yyyy"
+        var formattedDate = df.string(from: date)
+        
+        if let taskDay = components.day, let taskMonth = components.month, let taskYear = components.year {
+            if let currentDay = currentDayComponents.day, let currentMonth = currentDayComponents.month, let currentYear = currentDayComponents.year {
+                if (taskDay == currentDay && taskMonth == currentMonth && taskYear == currentYear) {
+                    //only show time and today
+                    df.dateFormat = "hh:mm a"
+                    formattedDate = "Today at \(df.string(from: date))"
+                } else if (taskYear == currentYear) {
+                    // show time and month
+                    df.dateFormat = "hh:mm a MMM dd"
+                    formattedDate = df.string(from: date)
+                } else {
+                    // show time, month and year
+                    df.dateFormat = "hh:mm a MMM dd, yyyy"
+                    formattedDate = df.string(from: date)
+                }
+            }
+        }
+        return formattedDate
     }
     
     //MARK: - TableView delegate
@@ -111,6 +187,25 @@ class ItemsViewController: UITableViewController {
         }
         destVC.onDismiss = { [weak self] in
             self?.loadItems()
+        }
+    }
+    
+    private func removeEmptyListView() {
+        if emptyListView.superview != nil {
+            emptyListView.removeFromSuperview()
+        }
+    }
+
+    // MARK: UITableViewDataSource
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        if let items = items, !items.isEmpty {
+            removeEmptyListView()
+            return 1
+        } else {
+            if emptyListView.superview == nil {
+                self.view.addSubview(emptyListView)
+            }
+            return 0
         }
     }
     
@@ -158,16 +253,5 @@ class ItemsViewController: UITableViewController {
             })
         }
         return nil
-    }
-}
-
-extension UIImage {
-    func tinted(with color: UIColor, isOpaque: Bool = false) -> UIImage? {
-        let format = imageRendererFormat
-        format.opaque = isOpaque
-        return UIGraphicsImageRenderer(size: size, format: format).image { _ in
-            color.set()
-            withRenderingMode(.alwaysTemplate).draw(at: .zero)
-        }
     }
 }

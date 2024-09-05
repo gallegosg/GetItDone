@@ -33,20 +33,20 @@ class SettingsViewController: UIViewController {
         Task {
             notificationsLabel.text = await notificationHandler.checkNotificationStatus() ? "Notifications Enabled" : "Notifications Disabled"
         }
-        
-        
     }
 
     @objc func colorDidChange(_ sender: UIColorWell) {
-        
         if let selectedColor = sender.selectedColor {
             if let hexString = selectedColor.toHexString {
                 //set user defaults
                 settingsData.saveSetting(for: K.appColorKey, with: hexString)
+                settingsButton.tintColor = UIColor(hex: hexString)
+                
                 navigationController?.navigationBar.tintColor = UIColor(hex: hexString)
             }
         }
     }
+    
     @IBAction func settingsButtonPressed(_ sender: UIButton) {
         if let appSettings = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(appSettings) {
             UIApplication.shared.open(appSettings)

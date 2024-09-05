@@ -49,7 +49,7 @@ class CategoryViewController: UITableViewController {
     }
     
     @IBAction func settingsPressed(_ sender: Any) {
-        performSegue(withIdentifier: K.settingsSegue, sender: self)
+        performSegue(withIdentifier: "toNewCat", sender: self)
     }
     
     func loadCategories() {
@@ -83,6 +83,7 @@ class CategoryViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (categories?.count ?? 0) > 0 ? categories!.count : 1
     }
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)

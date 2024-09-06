@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        if let color = UserDefaults.standard.string(forKey: K.appColorKey) {} else {
+        if let _ = UserDefaults.standard.string(forKey: K.appColorKey) {} else {
             settingsData.saveSetting(for: K.appColorKey, with: K.defaultAppColor)
         }
         

@@ -9,8 +9,14 @@
 /* Begin PBXBuildFile section */
 		4913411D2C83B3440000FCA2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913411C2C83B3440000FCA2 /* Constants.swift */; };
 		491341212C83BCB60000FCA2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491341202C83BCB60000FCA2 /* SettingsViewController.swift */; };
+		491D5CC42C86751A00719A07 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491D5CC32C86751A00719A07 /* DateExtension.swift */; };
+		491D5CC62C87F0AA00719A07 /* CategoriesViewCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491D5CC52C87F0AA00719A07 /* CategoriesViewCollectionViewController.swift */; };
+		491D5CC92C87F25700719A07 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 491D5CC82C87F25700719A07 /* CategoryCell.xib */; };
+		491D5CCA2C87F25700719A07 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491D5CC72C87F25700719A07 /* CategoryCell.swift */; };
 		494AB9042C85390E003884BF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AB9032C85390E003884BF /* UIColorExtension.swift */; };
 		494AB9062C853BC0003884BF /* SettingsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AB9052C853BC0003884BF /* SettingsData.swift */; };
+		494AB9092C865F21003884BF /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AB9072C865F21003884BF /* ItemTableViewCell.swift */; };
+		494AB90A2C865F21003884BF /* ItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 494AB9082C865F21003884BF /* ItemTableViewCell.xib */; };
 		495238F82C7032F3004CFE71 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495238F72C7032F3004CFE71 /* Category.swift */; };
 		495238FA2C703389004CFE71 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495238F92C703389004CFE71 /* Item.swift */; };
 		495238FF2C7123BF004CFE71 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495238FE2C7123BF004CFE71 /* ItemsViewController.swift */; };
@@ -19,6 +25,8 @@
 		495239052C76E234004CFE71 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 495239032C73F9E6004CFE71 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		495239162C7EC4D6004CFE71 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495239152C7EC4D6004CFE71 /* NotificationHandler.swift */; };
 		495239182C816BF3004CFE71 /* CategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495239172C816BF3004CFE71 /* CategoryManager.swift */; };
+		497D2B922C8A2EFB0013B0F2 /* EmptyList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 497D2B912C8A2EFB0013B0F2 /* EmptyList.xib */; };
+		497D2B942C8A31110013B0F2 /* EmptyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D2B932C8A31110013B0F2 /* EmptyList.swift */; };
 		49AF57C32C702D5600515533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF57C22C702D5600515533 /* AppDelegate.swift */; };
 		49AF57C52C702D5600515533 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF57C42C702D5600515533 /* SceneDelegate.swift */; };
 		49AF57CA2C702D5600515533 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 49AF57C92C702D5600515533 /* Base */; };
@@ -44,14 +52,22 @@
 /* Begin PBXFileReference section */
 		4913411C2C83B3440000FCA2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		491341202C83BCB60000FCA2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		491D5CC32C86751A00719A07 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		491D5CC52C87F0AA00719A07 /* CategoriesViewCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewCollectionViewController.swift; sourceTree = "<group>"; };
+		491D5CC72C87F25700719A07 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		491D5CC82C87F25700719A07 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
 		494AB9032C85390E003884BF /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		494AB9052C853BC0003884BF /* SettingsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsData.swift; sourceTree = "<group>"; };
+		494AB9072C865F21003884BF /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		494AB9082C865F21003884BF /* ItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemTableViewCell.xib; sourceTree = "<group>"; };
 		495238F72C7032F3004CFE71 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		495238F92C703389004CFE71 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		495238FE2C7123BF004CFE71 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		495239002C7297BD004CFE71 /* NewItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemViewController.swift; sourceTree = "<group>"; };
 		495239152C7EC4D6004CFE71 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		495239172C816BF3004CFE71 /* CategoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryManager.swift; sourceTree = "<group>"; };
+		497D2B912C8A2EFB0013B0F2 /* EmptyList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyList.xib; sourceTree = "<group>"; };
+		497D2B932C8A31110013B0F2 /* EmptyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyList.swift; sourceTree = "<group>"; };
 		49AF57BF2C702D5600515533 /* GetItDone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetItDone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49AF57C22C702D5600515533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49AF57C42C702D5600515533 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				494AB9032C85390E003884BF /* UIColorExtension.swift */,
+				491D5CC32C86751A00719A07 /* DateExtension.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -105,6 +122,12 @@
 			isa = PBXGroup;
 			children = (
 				49AF57C82C702D5600515533 /* Main.storyboard */,
+				494AB9072C865F21003884BF /* ItemTableViewCell.swift */,
+				494AB9082C865F21003884BF /* ItemTableViewCell.xib */,
+				491D5CC72C87F25700719A07 /* CategoryCell.swift */,
+				491D5CC82C87F25700719A07 /* CategoryCell.xib */,
+				497D2B912C8A2EFB0013B0F2 /* EmptyList.xib */,
+				497D2B932C8A31110013B0F2 /* EmptyList.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -150,6 +173,7 @@
 				495238FE2C7123BF004CFE71 /* ItemsViewController.swift */,
 				495239002C7297BD004CFE71 /* NewItemViewController.swift */,
 				491341202C83BCB60000FCA2 /* SettingsViewController.swift */,
+				491D5CC52C87F0AA00719A07 /* CategoriesViewCollectionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -219,7 +243,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				491D5CC92C87F25700719A07 /* CategoryCell.xib in Resources */,
+				494AB90A2C865F21003884BF /* ItemTableViewCell.xib in Resources */,
 				49AF57CC2C702D5800515533 /* Assets.xcassets in Resources */,
+				497D2B922C8A2EFB0013B0F2 /* EmptyList.xib in Resources */,
 				49AF57CF2C702D5800515533 /* Base in Resources */,
 				49AF57CA2C702D5600515533 /* Base in Resources */,
 			);
@@ -232,8 +259,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				491D5CCA2C87F25700719A07 /* CategoryCell.swift in Sources */,
 				49AF57DC2C7030BA00515533 /* CategoryViewController.swift in Sources */,
+				491D5CC42C86751A00719A07 /* DateExtension.swift in Sources */,
 				4913411D2C83B3440000FCA2 /* Constants.swift in Sources */,
+				491D5CC62C87F0AA00719A07 /* CategoriesViewCollectionViewController.swift in Sources */,
 				494AB9042C85390E003884BF /* UIColorExtension.swift in Sources */,
 				495239162C7EC4D6004CFE71 /* NotificationHandler.swift in Sources */,
 				495239182C816BF3004CFE71 /* CategoryManager.swift in Sources */,
@@ -244,6 +274,8 @@
 				495238FA2C703389004CFE71 /* Item.swift in Sources */,
 				49AF57C52C702D5600515533 /* SceneDelegate.swift in Sources */,
 				495239012C7297BD004CFE71 /* NewItemViewController.swift in Sources */,
+				497D2B942C8A31110013B0F2 /* EmptyList.swift in Sources */,
+				494AB9092C865F21003884BF /* ItemTableViewCell.swift in Sources */,
 				491341212C83BCB60000FCA2 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

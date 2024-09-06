@@ -12,7 +12,10 @@ struct K {
     static let appTitle = "GetItDone"
     
     static let cellIdentifier = "ReusableCell"
-    static let cellNibName = "ItemCell"
+    static let cellNibName = "ItemTableViewCell"
+    
+    static let categoryCellIdentifier = "CategoryCell"
+    static let categoryNibName = "CategoryCell"
     
     static let settingsSegue = "goToSettings"
     static let itemsSegue = "goToItems"
@@ -20,3 +23,7 @@ struct K {
     static let appColorKey = "appColor"
     static let defaultAppColor = "#C73E1D"
 }
+
+
+//UserDefaults
+//accent color

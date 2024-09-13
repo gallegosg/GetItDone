@@ -25,7 +25,6 @@ class SettingsViewController: UIViewController {
         colorPicker.addTarget(self, action: #selector(colorDidChange(_:)), for: .valueChanged)
 
         if let color = settingsData.getSetting(for: K.appColorKey) {
-            print("settings view setup color", color)
             colorPicker.selectedColor = UIColor(hex: color)
             settingsButton.tintColor = UIColor(hex: color)
         }

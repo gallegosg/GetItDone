@@ -7,11 +7,22 @@
 
 import UIKit
 import RealmSwift
+import TipKit
 
 class CategoryViewController: UITableViewController {
     var categories: Results<Category>?
     var categoryManager = CategoryManager()
     let settingsData = SettingsData()
+    var categoryTip = CategoryTip()
+    
+    @IBOutlet weak var addCategoryButton: UIBarButtonItem!
+    private lazy var emptyListView: EmptyList = {
+        let allViewsInXibArray = Bundle.main.loadNibNamed("EmptyList", owner: self, options: nil)
+        let view = allViewsInXibArray?.first as! EmptyList
+        view.frame = self.view.bounds
+        return view
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +31,33 @@ class CategoryViewController: UITableViewController {
         initApp()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
     func initApp() {
         if let color = settingsData.getSetting(for: K.appColorKey) {
             navigationController?.navigationBar.tintColor = UIColor(hex: color)
+        }
+        
+        tableView.register(UINib(nibName: K.categoryNibName, bundle: nil), forCellReuseIdentifier: K.categoryCellIdentifier)
+        
+        Task { @MainActor in
+            for await shouldDisplay in categoryTip.shouldDisplayUpdates {
+                if shouldDisplay {
+                    let controller = TipUIPopoverViewController(categoryTip, sourceItem: addCategoryButton)
+                    controller.view.tintColor = UIColor(hex: K.defaultAppColor)
+                    present(controller, animated: true)
+                } else if presentedViewController is TipUIPopoverViewController {
+                    dismiss(animated: true)
+                }
+            }
+        }
+    }
+    
+    private func removeEmptyListView() {
+        if emptyListView.superview != nil {
+            emptyListView.removeFromSuperview()
         }
     }
 
@@ -49,7 +84,7 @@ class CategoryViewController: UITableViewController {
     }
     
     @IBAction func settingsPressed(_ sender: Any) {
-        performSegue(withIdentifier: "toNewCat", sender: self)
+        performSegue(withIdentifier: K.settingsSegue, sender: self)
     }
     
     func loadCategories() {
@@ -79,31 +114,62 @@ class CategoryViewController: UITableViewController {
         present(alertController, animated: true)
     }
     
-    // MARK: - Table view data source
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.itemsSegue {
+            let destVC = segue.destination as! ItemsViewController
+            
+            if let indexPath = tableView.indexPathForSelectedRow {
+                destVC.currentCategory = categories?[indexPath.row]
+            }
+        }
+    }
+
+}
+
+// MARK: - Table view data source
+extension CategoryViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (categories?.count ?? 0) > 0 ? categories!.count : 1
+        return categories?.count ?? 0
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
-        var content = cell.defaultContentConfiguration()
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.categoryCellIdentifier, for: indexPath) as! CategoryCell
         
         if let categories = categories, !categories.isEmpty {
             let category = categories[indexPath.row]
-            content.image = UIImage(systemName: "")
-
-            content.text = category.name
-        } else {
-            content.text = "No categories to show"
+            cell.taskName.text = category.name
+            
+            var count = 0
+            for item in category.items {
+                if !item.isDone {
+                    count += 1
+                }
+            }
+            cell.count.text = count > 0 ? String(count) : ""
         }
-        
-        cell.contentConfiguration = content
-        
+                
         return cell
     }
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        if let categories = categories, !categories.isEmpty {
+            removeEmptyListView()
+            return 1
+        } else {
+            if emptyListView.superview == nil {
+                self.view.addSubview(emptyListView)
+            }
+            return 0
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 110
+    }
+}
+
+//MARK: - TableView Delegate
+extension CategoryViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if let categories = categories, !categories.isEmpty {
             let item = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
@@ -124,7 +190,6 @@ class CategoryViewController: UITableViewController {
             edit.backgroundColor = UIColor.systemBlue
             
             let swipeActions = UISwipeActionsConfiguration(actions: [item, edit])
-            
             return swipeActions
         }
         return nil
@@ -136,13 +201,32 @@ class CategoryViewController: UITableViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == K.itemsSegue {
-            let destVC = segue.destination as! ItemsViewController
-            
-            if let indexPath = tableView.indexPathForSelectedRow {
-                destVC.currentCategory = categories?[indexPath.row]
-            }
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        if let categories = categories, !categories.isEmpty {
+            return UIContextMenuConfiguration(identifier: nil,
+                                              previewProvider: nil,
+                                              actionProvider: {
+                suggestedActions in
+                
+                guard let category = self.categories?[indexPath.row] else {
+                    fatalError("No item found")
+                }
+                let editAction =
+                UIAction(title: NSLocalizedString("Edit", comment: ""),
+                         image: UIImage(systemName: "pencil")) { action in
+                    self.edit(category)
+                }
+                let deleteAction =
+                UIAction(title: NSLocalizedString("Delete", comment: "Remove item from list"),
+                         image: UIImage(systemName: "trash"),
+                         attributes: .destructive) { action in
+                    self.categoryManager.delete(category)
+                    self.tableView.reloadData()
+                }
+                return UIMenu(title: "", children: [editAction, deleteAction])
+            })
         }
+        return nil
     }
+
 }

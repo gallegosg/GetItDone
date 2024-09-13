@@ -10,13 +10,14 @@
 		4913411D2C83B3440000FCA2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913411C2C83B3440000FCA2 /* Constants.swift */; };
 		491341212C83BCB60000FCA2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491341202C83BCB60000FCA2 /* SettingsViewController.swift */; };
 		491D5CC42C86751A00719A07 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491D5CC32C86751A00719A07 /* DateExtension.swift */; };
-		491D5CC62C87F0AA00719A07 /* CategoriesViewCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491D5CC52C87F0AA00719A07 /* CategoriesViewCollectionViewController.swift */; };
-		491D5CC92C87F25700719A07 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 491D5CC82C87F25700719A07 /* CategoryCell.xib */; };
-		491D5CCA2C87F25700719A07 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491D5CC72C87F25700719A07 /* CategoryCell.swift */; };
 		494AB9042C85390E003884BF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AB9032C85390E003884BF /* UIColorExtension.swift */; };
 		494AB9062C853BC0003884BF /* SettingsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AB9052C853BC0003884BF /* SettingsData.swift */; };
 		494AB9092C865F21003884BF /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AB9072C865F21003884BF /* ItemTableViewCell.swift */; };
 		494AB90A2C865F21003884BF /* ItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 494AB9082C865F21003884BF /* ItemTableViewCell.xib */; };
+		4951A96E2C8B850D0099BE71 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4951A96D2C8B850D0099BE71 /* Roboto-Bold.ttf */; };
+		4951A9712C8D14370099BE71 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4951A96F2C8D14370099BE71 /* CategoryCell.swift */; };
+		4951A9722C8D14370099BE71 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4951A9702C8D14370099BE71 /* CategoryCell.xib */; };
+		4951A9742C8FB51E0099BE71 /* CategoryTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4951A9732C8FB51E0099BE71 /* CategoryTip.swift */; };
 		495238F82C7032F3004CFE71 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495238F72C7032F3004CFE71 /* Category.swift */; };
 		495238FA2C703389004CFE71 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495238F92C703389004CFE71 /* Item.swift */; };
 		495238FF2C7123BF004CFE71 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495238FE2C7123BF004CFE71 /* ItemsViewController.swift */; };
@@ -27,6 +28,7 @@
 		495239182C816BF3004CFE71 /* CategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495239172C816BF3004CFE71 /* CategoryManager.swift */; };
 		497D2B922C8A2EFB0013B0F2 /* EmptyList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 497D2B912C8A2EFB0013B0F2 /* EmptyList.xib */; };
 		497D2B942C8A31110013B0F2 /* EmptyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497D2B932C8A31110013B0F2 /* EmptyList.swift */; };
+		49ADA3A22C8B81CA0027175F /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49ADA3A12C8B81CA0027175F /* Roboto-Regular.ttf */; };
 		49AF57C32C702D5600515533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF57C22C702D5600515533 /* AppDelegate.swift */; };
 		49AF57C52C702D5600515533 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF57C42C702D5600515533 /* SceneDelegate.swift */; };
 		49AF57CA2C702D5600515533 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 49AF57C92C702D5600515533 /* Base */; };
@@ -53,13 +55,14 @@
 		4913411C2C83B3440000FCA2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		491341202C83BCB60000FCA2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		491D5CC32C86751A00719A07 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
-		491D5CC52C87F0AA00719A07 /* CategoriesViewCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewCollectionViewController.swift; sourceTree = "<group>"; };
-		491D5CC72C87F25700719A07 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
-		491D5CC82C87F25700719A07 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
 		494AB9032C85390E003884BF /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		494AB9052C853BC0003884BF /* SettingsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsData.swift; sourceTree = "<group>"; };
 		494AB9072C865F21003884BF /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		494AB9082C865F21003884BF /* ItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemTableViewCell.xib; sourceTree = "<group>"; };
+		4951A96D2C8B850D0099BE71 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		4951A96F2C8D14370099BE71 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		4951A9702C8D14370099BE71 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
+		4951A9732C8FB51E0099BE71 /* CategoryTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTip.swift; sourceTree = "<group>"; };
 		495238F72C7032F3004CFE71 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		495238F92C703389004CFE71 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		495238FE2C7123BF004CFE71 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 		495239172C816BF3004CFE71 /* CategoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryManager.swift; sourceTree = "<group>"; };
 		497D2B912C8A2EFB0013B0F2 /* EmptyList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyList.xib; sourceTree = "<group>"; };
 		497D2B932C8A31110013B0F2 /* EmptyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyList.swift; sourceTree = "<group>"; };
+		49ADA3A12C8B81CA0027175F /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		49AF57BF2C702D5600515533 /* GetItDone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetItDone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49AF57C22C702D5600515533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49AF57C42C702D5600515533 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +110,7 @@
 				495238F72C7032F3004CFE71 /* Category.swift */,
 				495239172C816BF3004CFE71 /* CategoryManager.swift */,
 				494AB9052C853BC0003884BF /* SettingsData.swift */,
+				4951A9732C8FB51E0099BE71 /* CategoryTip.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -124,12 +129,21 @@
 				49AF57C82C702D5600515533 /* Main.storyboard */,
 				494AB9072C865F21003884BF /* ItemTableViewCell.swift */,
 				494AB9082C865F21003884BF /* ItemTableViewCell.xib */,
-				491D5CC72C87F25700719A07 /* CategoryCell.swift */,
-				491D5CC82C87F25700719A07 /* CategoryCell.xib */,
 				497D2B912C8A2EFB0013B0F2 /* EmptyList.xib */,
 				497D2B932C8A31110013B0F2 /* EmptyList.swift */,
+				4951A96F2C8D14370099BE71 /* CategoryCell.swift */,
+				4951A9702C8D14370099BE71 /* CategoryCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		49ADA3A02C8B81490027175F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4951A96D2C8B850D0099BE71 /* Roboto-Bold.ttf */,
+				49ADA3A12C8B81CA0027175F /* Roboto-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		49AF57B62C702D5600515533 = {
@@ -151,7 +165,7 @@
 		49AF57C12C702D5600515533 /* GetItDone */ = {
 			isa = PBXGroup;
 			children = (
-				4913411C2C83B3440000FCA2 /* Constants.swift */,
+				49ADA3A02C8B81490027175F /* Fonts */,
 				494AB9022C8538FA003884BF /* Services */,
 				495239142C7EC4C8004CFE71 /* Handlers */,
 				495238F62C7032E0004CFE71 /* Data */,
@@ -159,6 +173,7 @@
 				49AF57DD2C7031DE00515533 /* Controllers */,
 				49AF57C22C702D5600515533 /* AppDelegate.swift */,
 				49AF57C42C702D5600515533 /* SceneDelegate.swift */,
+				4913411C2C83B3440000FCA2 /* Constants.swift */,
 				49AF57CB2C702D5800515533 /* Assets.xcassets */,
 				49AF57CD2C702D5800515533 /* LaunchScreen.storyboard */,
 				49AF57D02C702D5800515533 /* Info.plist */,
@@ -173,7 +188,6 @@
 				495238FE2C7123BF004CFE71 /* ItemsViewController.swift */,
 				495239002C7297BD004CFE71 /* NewItemViewController.swift */,
 				491341202C83BCB60000FCA2 /* SettingsViewController.swift */,
-				491D5CC52C87F0AA00719A07 /* CategoriesViewCollectionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -243,11 +257,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				491D5CC92C87F25700719A07 /* CategoryCell.xib in Resources */,
+				49ADA3A22C8B81CA0027175F /* Roboto-Regular.ttf in Resources */,
 				494AB90A2C865F21003884BF /* ItemTableViewCell.xib in Resources */,
+				4951A9722C8D14370099BE71 /* CategoryCell.xib in Resources */,
 				49AF57CC2C702D5800515533 /* Assets.xcassets in Resources */,
 				497D2B922C8A2EFB0013B0F2 /* EmptyList.xib in Resources */,
 				49AF57CF2C702D5800515533 /* Base in Resources */,
+				4951A96E2C8B850D0099BE71 /* Roboto-Bold.ttf in Resources */,
 				49AF57CA2C702D5600515533 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,14 +275,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				491D5CCA2C87F25700719A07 /* CategoryCell.swift in Sources */,
 				49AF57DC2C7030BA00515533 /* CategoryViewController.swift in Sources */,
 				491D5CC42C86751A00719A07 /* DateExtension.swift in Sources */,
 				4913411D2C83B3440000FCA2 /* Constants.swift in Sources */,
-				491D5CC62C87F0AA00719A07 /* CategoriesViewCollectionViewController.swift in Sources */,
 				494AB9042C85390E003884BF /* UIColorExtension.swift in Sources */,
 				495239162C7EC4D6004CFE71 /* NotificationHandler.swift in Sources */,
 				495239182C816BF3004CFE71 /* CategoryManager.swift in Sources */,
+				4951A9712C8D14370099BE71 /* CategoryCell.swift in Sources */,
 				495238FF2C7123BF004CFE71 /* ItemsViewController.swift in Sources */,
 				495238F82C7032F3004CFE71 /* Category.swift in Sources */,
 				49AF57C32C702D5600515533 /* AppDelegate.swift in Sources */,
@@ -277,6 +292,7 @@
 				497D2B942C8A31110013B0F2 /* EmptyList.swift in Sources */,
 				494AB9092C865F21003884BF /* ItemTableViewCell.swift in Sources */,
 				491341212C83BCB60000FCA2 /* SettingsViewController.swift in Sources */,
+				4951A9742C8FB51E0099BE71 /* CategoryTip.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

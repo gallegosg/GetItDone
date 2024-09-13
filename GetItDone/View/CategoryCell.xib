@@ -7,51 +7,62 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryCell" id="gTV-IL-0wX" customClass="CategoryCell" customModule="GetItDone" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
-            <autoresizingMask key="autoresizingMask"/>
-            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
-                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" id="KGk-i7-Jjw" customClass="CategoryCell" customModule="GetItDone" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T1T-zu-76A">
-                        <rect key="frame" x="15" y="15" width="150" height="150"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edD-lZ-I62">
-                                <rect key="frame" x="43.333333333333343" y="59" width="63.666666666666657" height="32"/>
-                                <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="26"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" name="AccentColor"/>
-                        <constraints>
-                            <constraint firstItem="edD-lZ-I62" firstAttribute="centerX" secondItem="T1T-zu-76A" secondAttribute="centerX" id="FmY-Ph-GVH"/>
-                            <constraint firstItem="edD-lZ-I62" firstAttribute="centerY" secondItem="T1T-zu-76A" secondAttribute="centerY" id="Vwo-zJ-luP"/>
-                        </constraints>
-                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMb-M0-qSD">
+                        <rect key="frame" x="16" y="9" width="54" height="26"/>
+                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="22"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Wb-gp-hp1">
+                        <rect key="frame" x="293" y="11.666666666666664" width="11" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
-            </view>
-            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <constraints>
-                <constraint firstItem="T1T-zu-76A" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="Us1-HX-gSd"/>
-                <constraint firstAttribute="trailing" secondItem="T1T-zu-76A" secondAttribute="trailing" constant="15" id="WQp-GA-QGQ"/>
-                <constraint firstAttribute="bottom" secondItem="T1T-zu-76A" secondAttribute="bottom" constant="15" id="kSy-kP-xqn"/>
-                <constraint firstItem="T1T-zu-76A" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="thM-W1-RaB"/>
-            </constraints>
-            <size key="customSize" width="54" height="132"/>
+                <color key="backgroundColor" name="ItemBackground"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="2Wb-gp-hp1" secondAttribute="trailing" constant="16" id="CNe-g5-bQZ"/>
+                    <constraint firstItem="fMb-M0-qSD" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bxY-pB-KdG"/>
+                    <constraint firstItem="2Wb-gp-hp1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fMb-M0-qSD" secondAttribute="trailing" constant="30" id="cEi-4g-WQC"/>
+                    <constraint firstItem="fMb-M0-qSD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="fFN-cL-gr2"/>
+                    <constraint firstItem="2Wb-gp-hp1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fgc-KO-AfG"/>
+                </constraints>
+                <userDefinedRuntimeAttributes>
+                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                        <color key="value" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </userDefinedRuntimeAttribute>
+                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                        <real key="value" value="8"/>
+                    </userDefinedRuntimeAttribute>
+                </userDefinedRuntimeAttributes>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="container" destination="T1T-zu-76A" id="mL8-fn-FnL"/>
-                <outlet property="label" destination="edD-lZ-I62" id="xeY-PP-j0A"/>
+                <outlet property="count" destination="2Wb-gp-hp1" id="mSZ-Mg-EEf"/>
+                <outlet property="taskName" destination="fMb-M0-qSD" id="ngd-OF-OZp"/>
             </connections>
-            <point key="canvasLocation" x="119.08396946564885" y="60.563380281690144"/>
-        </collectionViewCell>
+            <point key="canvasLocation" x="97.70992366412213" y="-12.67605633802817"/>
+        </tableViewCell>
     </objects>
     <resources>
-        <namedColor name="AccentColor">
-            <color red="0.77999997138977051" green="0.24300000071525574" blue="0.11400000005960464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="ItemBackground">
+            <color red="0.99000000953674316" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>

@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0hS-Mt-Z1x">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="D26-ma-Mqi">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Categories-->
         <scene sceneID="hEA-hk-eyl">
@@ -19,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="rOu-C0-yxk">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="rOu-C0-yxk" customClass="CategoryCell" customModule="GetItDone" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rOu-C0-yxk" id="oZe-m5-QXR">
@@ -46,12 +50,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addCategoryButton" destination="N8c-IM-tbk" id="sHk-ot-egZ"/>
                         <segue destination="kzl-EA-KzN" kind="show" identifier="goToItems" id="2lU-Xr-5OM"/>
+                        <segue destination="WbN-Jx-A41" kind="show" identifier="goToSettings" id="bal-p5-0hY"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q14-Ik-yCh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1085" y="-733"/>
+            <point key="canvasLocation" x="2011.4503816793892" y="-27.464788732394368"/>
         </scene>
         <!--Items View Controller-->
         <scene sceneID="EPx-df-1Bz">
@@ -89,7 +95,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CqT-ht-SzG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1947" y="-27"/>
+            <point key="canvasLocation" x="2872.5190839694656" y="-27.464788732394368"/>
         </scene>
         <!--New Item View Controller-->
         <scene sceneID="NFm-9g-ORu">
@@ -100,31 +106,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ra0-As-uiz">
-                                <rect key="frame" x="212" y="31" width="162" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <rect key="frame" x="212" y="31" width="162" height="47"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What needs to get done..." textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sqs-rG-vUd">
-                                <rect key="frame" x="125" y="195" width="249" height="19"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <rect key="frame" x="125" y="194" width="249" height="18"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHt-Hg-NUS">
-                                <rect key="frame" x="234" y="156" width="137" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <rect key="frame" x="234" y="155" width="137" height="24"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ul4-AM-zRK">
-                                <rect key="frame" x="89" y="323" width="288" height="36"/>
+                                <rect key="frame" x="89" y="321" width="288" height="36"/>
                                 <connections>
                                     <action selector="datePickerChanged:" destination="7NO-RZ-Y5I" eventType="valueChanged" id="oXr-3h-Ejb"/>
                                 </connections>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DvV-rO-Hou">
-                                <rect key="frame" x="329.66666666666669" y="284" width="41.333333333333314" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <rect key="frame" x="329" y="282" width="42" height="24"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -141,7 +147,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJE-kO-6vR">
-                                <rect key="frame" x="200.66666666666666" y="279" width="99.999999999999972" height="34"/>
+                                <rect key="frame" x="200" y="277" width="100" height="34"/>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="circle" catalog="system" title=" Notify"/>
@@ -185,57 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bgv-nc-QNw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2772" y="-27"/>
-        </scene>
-        <!--Categories View Collection View Controller-->
-        <scene sceneID="W4D-jK-wuf">
-            <objects>
-                <collectionViewController id="rrD-Bo-eoG" customClass="CategoriesViewCollectionViewController" customModule="GetItDone" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="gwJ-HQ-bbL">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CIn-ga-xc2">
-                            <size key="itemSize" width="128" height="128"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="LfO-zq-AP5">
-                                <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qKT-HM-xtz">
-                                    <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </collectionViewCellContentView>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="rrD-Bo-eoG" id="NEU-lD-MG4"/>
-                            <outlet property="delegate" destination="rrD-Bo-eoG" id="T0d-L7-9DN"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" id="U2m-GA-bHl">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="gear" catalog="system" id="pSG-YU-26L">
-                            <connections>
-                                <action selector="settingsPressed:" destination="rrD-Bo-eoG" id="POq-vJ-HO5"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="asp-Yc-1G2">
-                            <connections>
-                                <action selector="addPressed:" destination="rrD-Bo-eoG" id="iNv-i5-kfN"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <segue destination="kzl-EA-KzN" kind="show" identifier="newCatToItems" id="t7e-zI-k4m"/>
-                        <segue destination="WbN-Jx-A41" kind="show" identifier="goToSettings" id="csv-Fr-wFT"/>
-                    </connections>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2c6-2L-ros" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1085" y="-27"/>
+            <point key="canvasLocation" x="3698.4732824427479" y="-27.464788732394368"/>
         </scene>
         <!--Settings-->
         <scene sceneID="4ah-Kh-pID">
@@ -294,30 +250,27 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zth-Cu-LGV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1085" y="699"/>
+            <point key="canvasLocation" x="2011" y="698"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="dEH-i7-wvW">
+        <scene sceneID="mlU-d4-EYn">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0hS-Mt-Z1x" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="D26-ma-Mqi" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Z0W-7r-Mm3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WSA-7d-w03">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="rrD-Bo-eoG" kind="relationship" relationship="rootViewController" id="XP3-7g-pxM"/>
+                        <segue destination="ckt-0e-T65" kind="relationship" relationship="rootViewController" id="zpg-JK-x1D"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YoR-Uk-17v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3QG-K4-ety" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="198" y="-27"/>
+            <point key="canvasLocation" x="1084.7328244274809" y="-27.464788732394368"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="t7e-zI-k4m"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.right.fill" catalog="system" width="128" height="104"/>
         <image name="circle" catalog="system" width="128" height="123"/>

@@ -16,7 +16,7 @@ struct K {
     
     static let categoryCellIdentifier = "CategoryCell"
     static let categoryNibName = "CategoryCell"
-    
+
     static let settingsSegue = "goToSettings"
     static let itemsSegue = "goToItems"
     

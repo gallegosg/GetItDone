@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import TipKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let _ = UserDefaults.standard.string(forKey: K.appColorKey) {} else {
             settingsData.saveSetting(for: K.appColorKey, with: K.defaultAppColor)
+        }
+        
+        Task {
+            try? Tips.configure()
         }
         
         do {
